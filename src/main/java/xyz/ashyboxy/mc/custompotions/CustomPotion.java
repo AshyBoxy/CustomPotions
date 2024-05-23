@@ -127,6 +127,8 @@ public class CustomPotion implements PotionLike {
 
     public Component getDisplayName(Item item) {
         // TODO: make the fallback fully specified in the datapack
+        // ^ i forget if this is still needed
+        // i think i meant making it so you can set all 4 names fully
         String fallback = "Potion of ";
         String path = "normal";
         if (item == Items.SPLASH_POTION) {
