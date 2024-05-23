@@ -1,0 +1,13 @@
+{
+    "required": true,
+    "package": "xyz.ashyboxy.mc.custompotions.mixin",
+    "compatibilityLevel": "JAVA_21",
+    "mixins": [
+        "PotionBrewingMixin",
+        "PotionMixin",
+        "TippedArrowRecipeMixin"
+    ],
+    "injectors": {
+        "defaultRequire": 1
+	}
+}

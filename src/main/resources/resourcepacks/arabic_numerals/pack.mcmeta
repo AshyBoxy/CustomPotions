@@ -1,0 +1,7 @@
+{
+    "pack": {
+        "pack_format": 32,
+        "supported_formats": [ 0, 999 ],
+        "description": "Use arabic numerals for potion effects"
+    }
+}

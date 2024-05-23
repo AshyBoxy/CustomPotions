@@ -1,0 +1,42 @@
+{
+	"schemaVersion": 1,
+	"id": "custompotions",
+	"version": "${version}",
+	"name": "CustomPotions",
+	"description": "Allows adding custom potions and potion recipes through datapacks",
+	"authors": [
+		"AshyBoxy"
+	],
+	"contact": {
+		"homepage": "https://github.com/AshyBoxy/tpcommands",
+		"sources": "https://github.com/AshyBoxy/tpcommands",
+		"issues": "https://github.com/AshyBoxy/tpcommands/issues"
+
+	},
+	"license": "MIT",
+	"icon": "assets/custompotions/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"xyz.ashyboxy.mc.custompotions.CustomPotionsMod"
+		],
+		"client": [
+			"xyz.ashyboxy.mc.custompotions.CustomPotionsClient"
+		],
+		"emi": [
+			"xyz.ashyboxy.mc.custompotions.emi.Plugin"
+		],
+		"rei_client": [
+			"xyz.ashyboxy.mc.custompotions.rei.ClientPlugin"
+		]
+	},
+	"mixins": [
+		"custompotions.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.15.0",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
