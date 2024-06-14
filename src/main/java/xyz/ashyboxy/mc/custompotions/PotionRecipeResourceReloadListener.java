@@ -20,19 +20,21 @@ public class PotionRecipeResourceReloadListener extends SimpleJsonResourceReload
         super(new GsonBuilder().create(), "potion_recipes");
     }
 
+    public static final ResourceLocation id = CustomPotionsMod.id("potion_recipes");
+
     public static int getLoadedRecipes() {
         return loadedRecipes;
     }
 
     @Override
     public ResourceLocation getFabricId() {
-        return new ResourceLocation(CustomPotionsMod.MOD_ID, "potion_recipes");
+        return id;
     }
 
     @Override
     public Collection<ResourceLocation> getFabricDependencies() {
         List<ResourceLocation> deps = new ArrayList<>();
-        deps.add(new ResourceLocation(CustomPotionsMod.MOD_ID, "custom_potions"));
+        deps.add(CustomPotionResourceReloadListener.id);
         return deps;
     }
 

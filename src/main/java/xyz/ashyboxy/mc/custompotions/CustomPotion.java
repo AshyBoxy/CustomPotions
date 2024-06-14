@@ -44,16 +44,17 @@ public class CustomPotion implements PotionLike {
 
     public static final StreamCodec<ByteBuf, CustomPotion> STREAM_CODEC = ByteBufCodecs.fromCodec(S_CODEC);
 
-    public static ResourceLocation VANILLA_POTION_TYPE = new ResourceLocation(CustomPotionsMod.MOD_ID, "vanilla");
-    public static ResourceLocation CUSTOM_POTION_TYPE = new ResourceLocation(CustomPotionsMod.MOD_ID, "custom");
+    public static ResourceLocation VANILLA_POTION_TYPE = CustomPotionsMod.id("vanilla");
+    public static ResourceLocation CUSTOM_POTION_TYPE = CustomPotionsMod.id("custom");
 
-    public static ResourceLocation CUSTOM_POTION_DATA = new ResourceLocation(CustomPotionsMod.MOD_ID, "custom_potion");
+    public static ResourceLocation CUSTOM_POTION_DATA = CustomPotionsMod.id("custom_potion");
     // the potions registry is synced...
     public static Holder<Potion> CUSTOM_POTION = Potions.THICK;
 
     @Nullable
     public static CustomPotion asCustomPotion(ItemStack potion) {
-        return (PotionBrewing.CUSTOM_POTIONS.isEmpty() ? CustomPotionClientData.CUSTOM_POTIONS : PotionBrewing.CUSTOM_POTIONS).get(new ResourceLocation(potion.getOrDefault(DataComponents.CUSTOM_DATA,
+        return (PotionBrewing.CUSTOM_POTIONS.isEmpty() ? CustomPotionClientData.CUSTOM_POTIONS :
+                PotionBrewing.CUSTOM_POTIONS).get(ResourceLocation.tryParse(potion.getOrDefault(DataComponents.CUSTOM_DATA,
                 CustomData.EMPTY).copyTag().getCompound(CUSTOM_POTION_DATA.toString()).getString("id")));
     }
     public static boolean isCustomPotion(ItemStack potion) {

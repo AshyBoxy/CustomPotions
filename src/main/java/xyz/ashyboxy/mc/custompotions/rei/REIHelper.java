@@ -45,7 +45,7 @@ public class REIHelper {
         }
 
         EntryIngredient arrow = EntryIngredients.of(Items.ARROW);
-        RecipeHolder<?> tippedArrowRecipe = registry.getRecipeManager().byKey(new ResourceLocation("minecraft",
+        RecipeHolder<?> tippedArrowRecipe = registry.getRecipeManager().byKey(ResourceLocation.withDefaultNamespace(
                 "tipped_arrow")).orElse(null);
 
         for (PotionLike p : PotionLike.getPotions().values()) {

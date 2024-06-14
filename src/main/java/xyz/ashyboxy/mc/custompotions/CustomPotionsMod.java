@@ -31,10 +31,10 @@ public class CustomPotionsMod implements ModInitializer {
     public static final String MOD_ID = "custompotions";
     public static final Logger LOGGER = LoggerFactory.getLogger("CustomPotions");
 
-    public static final ResourceLocation SYNC_POTIONS = new ResourceLocation(MOD_ID, "sync_potions");
-    public static final ResourceLocation SYNC_RECIPES = new ResourceLocation(MOD_ID, "sync_recipes");
-    public static final ResourceLocation CHECK = new ResourceLocation(MOD_ID, "check");
-    public static final ResourceLocation ACK_POTIONS = new ResourceLocation(MOD_ID, "ack_potions");
+    public static final ResourceLocation SYNC_POTIONS = id("sync_potions");
+    public static final ResourceLocation SYNC_RECIPES = id("sync_recipes");
+    public static final ResourceLocation CHECK = id("check");
+    public static final ResourceLocation ACK_POTIONS = id("ack_potions");
 
     public static final ArrayList<UUID> moddedPlayers = new ArrayList<>();
 
@@ -93,6 +93,10 @@ public class CustomPotionsMod implements ModInitializer {
             if (!moddedPlayers.contains(player.getUUID())) return;
             player.connection.send(ServerPlayNetworking.createS2CPacket(new SyncPotionsPacket(PotionBrewing.CUSTOM_POTIONS)));
         }));
+    }
+
+    public static ResourceLocation id(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MOD_ID, path);
     }
 
     public record CheckPacket() implements CustomPacketPayload {

@@ -36,7 +36,7 @@ public class Plugin implements EmiPlugin {
                         EmiStack.of(p.getBase().customPotions$make(new ItemStack(r))),
                         EmiIngredient.of(Ingredient.of(p.getReagent())),
                         EmiStack.of(p.getResult().customPotions$make(new ItemStack(r))),
-                        new ResourceLocation(p.getId().getNamespace(),
+                        ResourceLocation.fromNamespaceAndPath(p.getId().getNamespace(),
                                 "/recipe/" + p.getId().getPath() + "/" + BuiltInRegistries.ITEM.getKey(r).getNamespace() + "/" + BuiltInRegistries.ITEM.getKey(r).getPath())));
             }
         }
@@ -47,20 +47,20 @@ public class Plugin implements EmiPlugin {
                     EmiStack.of(p.customPotions$make(new ItemStack(Items.POTION))),
                     EmiIngredient.of(Ingredient.of(Items.GUNPOWDER)),
                     EmiStack.of(p.customPotions$make(new ItemStack(Items.SPLASH_POTION))),
-                    new ResourceLocation(p.customPotions$getLocation().getNamespace(),
+                    ResourceLocation.fromNamespaceAndPath(p.customPotions$getLocation().getNamespace(),
                             "/recipe/to_splash/" + p.customPotions$getLocation().getPath())));
             registry.addRecipe(new EmiBrewingRecipe(
                     EmiStack.of(p.customPotions$make(new ItemStack(Items.SPLASH_POTION))),
                     EmiIngredient.of(Ingredient.of(Items.DRAGON_BREATH)),
                     EmiStack.of(p.customPotions$make(new ItemStack(Items.LINGERING_POTION))),
-                    new ResourceLocation(p.customPotions$getLocation().getNamespace(),
+                    ResourceLocation.fromNamespaceAndPath(p.customPotions$getLocation().getNamespace(),
                             "/recipe/to_lingering/" + p.customPotions$getLocation().getPath())));
             registry.addRecipe(new EmiCraftingRecipe(List.of(
                     arrow, arrow, arrow,
                     arrow, EmiStack.of(p.customPotions$make(new ItemStack(Items.LINGERING_POTION))), arrow,
                     arrow, arrow, arrow
             ), EmiStack.of(p.customPotions$make(new ItemStack(Items.TIPPED_ARROW))),
-                    new ResourceLocation(p.customPotions$getLocation().getNamespace(),
+                    ResourceLocation.fromNamespaceAndPath(p.customPotions$getLocation().getNamespace(),
                             "/recipe/to_tipped_arrow/" + p.customPotions$getLocation().getPath()),
                     false));
 
@@ -74,13 +74,13 @@ public class Plugin implements EmiPlugin {
                 EmiStack.of(PotionContents.createItemStack(Items.POTION, Potions.LUCK)),
                 EmiIngredient.of(Ingredient.of(Items.GUNPOWDER)),
                 EmiStack.of(PotionContents.createItemStack(Items.SPLASH_POTION, Potions.LUCK)),
-                new ResourceLocation(CustomPotionsMod.MOD_ID, "recipe/to_splash/luck") // no leading / is intentional
+                CustomPotionsMod.id("recipe/to_splash/luck") // no leading / is intentional
         ));
         registry.addRecipe(new EmiBrewingRecipe(
                 EmiStack.of(PotionContents.createItemStack(Items.SPLASH_POTION, Potions.LUCK)),
                 EmiIngredient.of(Ingredient.of(Items.DRAGON_BREATH)),
                 EmiStack.of(PotionContents.createItemStack(Items.LINGERING_POTION, Potions.LUCK)),
-                new ResourceLocation(CustomPotionsMod.MOD_ID, "recipe/to_lingering/luck") // no leading / is intentional
+                CustomPotionsMod.id("recipe/to_lingering/luck") // no leading / is intentional
         ));
     }
 }

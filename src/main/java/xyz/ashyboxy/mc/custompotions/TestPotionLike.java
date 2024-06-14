@@ -18,7 +18,7 @@ import java.util.Map;
 
 // for brevity's sake, this doesn't sync if it's loaded with clients
 public class TestPotionLike implements PotionLike {
-    public static ResourceLocation TEST_POTION = new ResourceLocation(CustomPotionsMod.MOD_ID, "test");
+    public static ResourceLocation TEST_POTION = CustomPotionsMod.id("test");
 
     public static void initialize() {
         PotionLike.registerHandler(TEST_POTION, new Handler() {

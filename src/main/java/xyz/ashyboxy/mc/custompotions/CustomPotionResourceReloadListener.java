@@ -20,9 +20,11 @@ public class CustomPotionResourceReloadListener extends SimpleJsonResourceReload
         super(new GsonBuilder().create(), "custom_potions");
     }
 
+    public static final ResourceLocation id = CustomPotionsMod.id("custom_potions");
+
     @Override
     public ResourceLocation getFabricId() {
-        return new ResourceLocation(CustomPotionsMod.MOD_ID, "custom_potions");
+        return id;
     }
 
     private static int loadedPotions = 0;
