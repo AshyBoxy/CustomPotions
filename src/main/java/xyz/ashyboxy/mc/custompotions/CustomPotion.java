@@ -29,17 +29,21 @@ import java.util.Map;
 import java.util.Optional;
 
 public class CustomPotion implements PotionLike {
+    /** "serialization codec", includes id */
     public static final Codec<CustomPotion> S_CODEC = RecordCodecBuilder.create(instance -> instance.group(
             ComponentSerialization.CODEC.fieldOf("fallback").forGetter(CustomPotion::getFallbackName),
             Codec.list(MobEffectInstance.CODEC).fieldOf("effects").forGetter(CustomPotion::getEffects),
-            ResourceLocation.CODEC.fieldOf("id").forGetter(CustomPotion::getId)
-    ).apply(instance, (f, e, id) -> new CustomPotion(e, f, id)));
+            ResourceLocation.CODEC.fieldOf("id").forGetter(CustomPotion::getId),
+            Codec.INT.optionalFieldOf("color").forGetter(CustomPotion::getColor)
+    ).apply(instance, (fallback, effects, id, color) -> new CustomPotion(effects, fallback, id, color)));
 
+    /** "deserialization codec", does not include id */
     public static Codec<CustomPotion> getDCodec(ResourceLocation id) {
         return RecordCodecBuilder.create(instance -> instance.group(
                 ComponentSerialization.CODEC.fieldOf("fallback").forGetter(CustomPotion::getFallbackName),
-                Codec.list(MobEffectInstance.CODEC).fieldOf("effects").forGetter(CustomPotion::getEffects)
-        ).apply(instance, (f, e) -> new CustomPotion(e, f, id)));
+                Codec.list(MobEffectInstance.CODEC).fieldOf("effects").forGetter(CustomPotion::getEffects),
+                Codec.INT.optionalFieldOf("color").forGetter(CustomPotion::getColor)
+        ).apply(instance, (fallback, effects, color) -> new CustomPotion(effects, fallback, id, color)));
     }
 
     public static final StreamCodec<ByteBuf, CustomPotion> STREAM_CODEC = ByteBufCodecs.fromCodec(S_CODEC);
@@ -101,18 +105,20 @@ public class CustomPotion implements PotionLike {
     private final List<MobEffectInstance> effects;
     private final Component fallbackName;
     private final ResourceLocation id;
+    private final Optional<Integer> color;
 
     public CustomPotion(List<MobEffectInstance> effects, Component fallbackName,
-            ResourceLocation id) {
+            ResourceLocation id, Optional<Integer> color) {
         this.effects = effects;
         this.fallbackName = fallbackName;
         this.id = id;
+        this.color = color;
     }
 
     public ItemStack create(ItemStack replacing) {
         ItemStack stack = new ItemStack(replacing.getItem(), 1);
 
-        PotionContents customPotionContents = new PotionContents(Optional.of(CUSTOM_POTION), Optional.empty(),
+        PotionContents customPotionContents = new PotionContents(Optional.of(CUSTOM_POTION), this.color,
                 effects.stream().toList());
         stack.set(DataComponents.ITEM_NAME, getDisplayName(replacing.getItem()));
         stack.set(DataComponents.POTION_CONTENTS, customPotionContents);
@@ -160,6 +166,10 @@ public class CustomPotion implements PotionLike {
 
     public ResourceLocation getId() {
         return id;
+    }
+
+    public Optional<Integer> getColor() {
+        return color;
     }
 
     @Override

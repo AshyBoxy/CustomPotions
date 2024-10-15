@@ -13,6 +13,9 @@ public class CustomPotionsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         // if anyone wants to help with this, that'd be great
+        // 2024-10-16: i don't remember where i read this, but iirc something with fabric's
+        //      resourcemanager api doesn't let you override vanilla language values, so a
+        //      solution could be registering it without using the fabric api?
 //        ResourceManagerHelper.registerBuiltinResourcePack(new ResourceLocation(CustomPotionsMod.MOD_ID,
 //                "arabic_numerals"), FabricLoader.getInstance().getModContainer(CustomPotionsMod.MOD_ID).orElseThrow(),
 //                ResourcePackActivationType.NORMAL);
