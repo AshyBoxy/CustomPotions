@@ -8,7 +8,7 @@ In a datapack, make a data/id/custom_potions/id.json file for your potion.
 
 The available parameters are "fallback" for the fallback name of the potion, if translations are unvailable
 (Potion of {fallback}, Arrow of {fallback}, Splash {fallback}, Lingering {fallback}),
-an array of effects following the vanilla format, and an optional color using the (same format as vanilla)[https://minecraft.wiki/w/Calculators/Decimal_representation_of_color].
+an array of effects following the vanilla format, and an optional color using the [same format as vanilla](https://minecraft.wiki/w/Calculators/Decimal_representation_of_color).
 
 For example:
 ```json
