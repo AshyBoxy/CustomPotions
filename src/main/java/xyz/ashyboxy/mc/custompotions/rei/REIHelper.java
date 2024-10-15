@@ -15,9 +15,7 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import xyz.ashyboxy.mc.custompotions.CustomPotionClientData;
-import xyz.ashyboxy.mc.custompotions.PotionLike;
-import xyz.ashyboxy.mc.custompotions.PotionRecipe;
+import xyz.ashyboxy.mc.custompotions.*;
 
 import java.util.List;
 
@@ -26,13 +24,15 @@ import java.util.List;
 // so, my solution is to only actually run the methods after they've been called twice
 public class REIHelper {
     private static int displayCounter = 0;
+    private static int entryCounter = 0;
+
     public static void registerDisplays(DisplayRegistry registry) {
-        if (CustomPotionClientData.reiReloading) {
-            displayCounter++;
-            if (displayCounter < 2) return;
-            displayCounter = 0;
-            CustomPotionClientData.reiReloading = false;
-        } else displayCounter = 0;
+//        if (CustomPotionClientData.reiReloading) {
+//            displayCounter++;
+//            if (displayCounter < 2) return;
+//            displayCounter = 0;
+//            CustomPotionClientData.reiReloading = false;
+//        } else displayCounter = 0;
 
         // TODO: deduplicate this code from emi(?)
         for (PotionRecipe p : PotionLike.getRecipes().values()) {
@@ -80,14 +80,13 @@ public class REIHelper {
         ));
     }
 
-    private static int entryCounter = 0;
-    public static void registerEntries(EntryRegistry registry){
-        if (CustomPotionClientData.reiReloading) {
-            entryCounter++;
-            if (entryCounter < 2) return;
-            entryCounter = 0;
-            CustomPotionClientData.reiReloading = false;
-        } else entryCounter = 0;
+    public static void registerEntries(EntryRegistry registry) {
+//        if (CustomPotionClientData.reiReloading) {
+//            entryCounter++;
+//            if (entryCounter < 2) return;
+//            entryCounter = 0;
+//            CustomPotionClientData.reiReloading = false;
+//        } else entryCounter = 0;
         for (PotionLike p : PotionLike.getPotions().values()) {
             registry.addEntry(EntryStacks.of(p.customPotions$make(new ItemStack(Items.POTION))));
             registry.addEntry(EntryStacks.of(p.customPotions$make(new ItemStack(Items.SPLASH_POTION))));
