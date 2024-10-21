@@ -104,7 +104,7 @@ public class CustomPotion implements PotionLike {
 
     private final List<MobEffectInstance> effects;
     private final Component fallbackName;
-    private final ResourceLocation id;
+    private ResourceLocation id;
     private final Optional<Integer> color;
 
     public CustomPotion(List<MobEffectInstance> effects, Component fallbackName,
@@ -119,7 +119,7 @@ public class CustomPotion implements PotionLike {
         ItemStack stack = new ItemStack(replacing.getItem(), 1);
 
         PotionContents customPotionContents = new PotionContents(Optional.of(CUSTOM_POTION), this.color,
-                effects.stream().toList());
+                effects.stream().toList(), Optional.empty());
         stack.set(DataComponents.ITEM_NAME, getDisplayName(replacing.getItem()));
         stack.set(DataComponents.POTION_CONTENTS, customPotionContents);
 
@@ -166,6 +166,9 @@ public class CustomPotion implements PotionLike {
 
     public ResourceLocation getId() {
         return id;
+    }
+    void setId (ResourceLocation newId) {
+        this.id = newId;
     }
 
     public Optional<Integer> getColor() {

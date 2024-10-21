@@ -46,9 +46,8 @@ dependencies {
     modCompileOnly "dev.architectury:architectury-fabric:13.0.6"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rei_version}"
-    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
+//    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
 
-    modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modCompileOnly "dev.emi:emi-fabric:${emi_version}"
 //    modImplementation "dev.emi:emi-fabric:${emi_version}"
 }

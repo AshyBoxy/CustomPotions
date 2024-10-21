@@ -1,8 +1,5 @@
 package xyz.ashyboxy.mc.custompotions;
 
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
-import com.mojang.serialization.JsonOps;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -14,12 +11,13 @@ import java.util.Map;
 
 import static xyz.ashyboxy.mc.custompotions.CustomPotionsMod.LOGGER;
 
-public class CustomPotionResourceReloadListener extends SimpleJsonResourceReloadListener
+public class CustomPotionResourceReloadListener extends SimpleJsonResourceReloadListener<CustomPotion>
         implements IdentifiableResourceReloadListener {
     public CustomPotionResourceReloadListener() {
-        super(new GsonBuilder().create(), "custom_potions");
+        super(CustomPotion.getDCodec(loadingId), "custom_potions");
     }
 
+    public static final ResourceLocation loadingId = CustomPotionsMod.id("/loading_potion");
     public static final ResourceLocation id = CustomPotionsMod.id("custom_potions");
 
     @Override
@@ -34,17 +32,19 @@ public class CustomPotionResourceReloadListener extends SimpleJsonResourceReload
     }
 
     @Override
-    protected void apply(Map<ResourceLocation, JsonElement> potions, ResourceManager resourceManager,
-            ProfilerFiller profiler) {
+    protected void apply(Map<ResourceLocation, CustomPotion> potions, ResourceManager resourceManager,
+                         ProfilerFiller profiler) {
         PotionBrewing.CUSTOM_POTIONS = new HashMap<>();
 
         loadedPotions = 0;
 
-        potions.forEach((id, jsonElement) -> {
+        potions.forEach((id, potion) -> {
             try {
-                CustomPotion pot = CustomPotion.getDCodec(id).decode(JsonOps.INSTANCE, jsonElement).getOrThrow().getFirst();
+//                CustomPotion pot = CustomPotion.getDCodec(id).decode(JsonOps.INSTANCE, jsonElement).getOrThrow().getFirst();
 
-                PotionBrewing.CUSTOM_POTIONS.put(id, pot);
+                // TODO: should this use a holder now?
+                potion.setId(id);
+                PotionBrewing.CUSTOM_POTIONS.put(id, potion);
 
                 loadedPotions++;
             } catch (Exception e) {

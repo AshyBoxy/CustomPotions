@@ -29,6 +29,6 @@ public class PotionMixin implements PotionLike {
 
     @Override
     public ItemStack customPotions$make(ItemStack base) {
-        return PotionContents.createItemStack(base.getItem(), BuiltInRegistries.POTION.getHolder(customPotions$getLocation()).orElseThrow());
+        return PotionContents.createItemStack(base.getItem(), BuiltInRegistries.POTION.get(customPotions$getLocation()).orElseThrow());
     }
 }

@@ -34,7 +34,7 @@ public class REIHelper {
 //            CustomPotionClientData.reiReloading = false;
 //        } else displayCounter = 0;
 
-        // TODO: deduplicate this code from emi(?)
+/*        // TODO: deduplicate this code from emi(?)
         for (PotionRecipe p : PotionLike.getRecipes().values()) {
             for (Item r : new Item[]{ Items.POTION, Items.SPLASH_POTION, Items.LINGERING_POTION }) {
                 registry.add(new BrewingRecipe(
@@ -77,7 +77,7 @@ public class REIHelper {
                 Ingredient.of(PotionContents.createItemStack(Items.SPLASH_POTION, Potions.LUCK)),
                 Ingredient.of(Items.DRAGON_BREATH),
                 PotionContents.createItemStack(Items.LINGERING_POTION, Potions.LUCK)
-        ));
+        ));*/
     }
 
     public static void registerEntries(EntryRegistry registry) {

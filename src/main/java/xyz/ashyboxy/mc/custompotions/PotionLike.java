@@ -37,7 +37,7 @@ public interface PotionLike {
         }
         // this one's special, since we always want it to run last so other handlers can cancel it
         if(type.equals(CustomPotion.VANILLA_POTION_TYPE)) {
-            return (PotionLike) BuiltInRegistries.POTION.get(value);
+            return (PotionLike) BuiltInRegistries.POTION.getValue(value);
         }
         return new Unknown(type, value);
     }
