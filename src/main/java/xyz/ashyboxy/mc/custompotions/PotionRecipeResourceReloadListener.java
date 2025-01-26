@@ -6,6 +6,7 @@ import com.mojang.serialization.JsonOps;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -32,7 +33,7 @@ public class PotionRecipeResourceReloadListener extends SimpleJsonResourceReload
     protected record HalfLoadedRecipe(Item reagent, JsonElement base, JsonElement result) {}
 
     public PotionRecipeResourceReloadListener() {
-        super(HALF_LOADED_RECIPE_CODEC, "potion_recipes");
+        super(HALF_LOADED_RECIPE_CODEC, FileToIdConverter.json("potion_recipes"));
     }
 
     public static final ResourceLocation id = CustomPotionsMod.id("potion_recipes");

@@ -1,6 +1,7 @@
 package xyz.ashyboxy.mc.custompotions;
 
 import net.fabricmc.fabric.api.resource.IdentifiableResourceReloadListener;
+import net.minecraft.resources.FileToIdConverter;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -14,7 +15,7 @@ import static xyz.ashyboxy.mc.custompotions.CustomPotionsMod.LOGGER;
 public class CustomPotionResourceReloadListener extends SimpleJsonResourceReloadListener<CustomPotion>
         implements IdentifiableResourceReloadListener {
     public CustomPotionResourceReloadListener() {
-        super(CustomPotion.getDCodec(loadingId), "custom_potions");
+        super(CustomPotion.getDCodec(loadingId), FileToIdConverter.json("custom_potions"));
     }
 
     public static final ResourceLocation loadingId = CustomPotionsMod.id("/loading_potion");
