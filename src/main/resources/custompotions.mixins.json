@@ -3,8 +3,11 @@
     "package": "xyz.ashyboxy.mc.custompotions.mixin",
     "compatibilityLevel": "JAVA_21",
     "mixins": [
+        "AreaEffectCloudMixin",
+        "ArrowMixin",
         "PotionBrewingMixin",
         "PotionMixin",
+        "ThrownPotionMixin",
         "TippedArrowRecipeMixin"
     ],
     "injectors": {
