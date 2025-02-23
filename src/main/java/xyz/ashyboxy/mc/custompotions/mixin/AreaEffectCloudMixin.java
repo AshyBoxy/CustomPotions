@@ -34,7 +34,7 @@ public abstract class AreaEffectCloudMixin implements CustomPotionAreaEffectClou
 
     @WrapOperation(method = "serverTick", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/alchemy/Potion;getEffects()Ljava/util/List;"))
     private List<MobEffectInstance> getEffects(Potion instance, Operation<List<MobEffectInstance>> original) {
-        if (!customPotions$isCustomPotion()) return potionContents.customEffects();
+        if (customPotions$isCustomPotion()) return potionContents.customEffects();
         return original.call(instance);
     }
 

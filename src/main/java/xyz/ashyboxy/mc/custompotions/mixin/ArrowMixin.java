@@ -6,6 +6,8 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.llamalad7.mixinextras.sugar.Share;
 import com.llamalad7.mixinextras.sugar.ref.LocalBooleanRef;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.projectile.AbstractArrow;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
@@ -18,13 +20,18 @@ import xyz.ashyboxy.mc.custompotions.PotionLike;
 import java.util.List;
 
 @Mixin(Arrow.class)
-public abstract class ArrowMixin {
+public abstract class ArrowMixin extends AbstractArrow {
+    protected ArrowMixin(EntityType<? extends AbstractArrow> entityType) {
+        super(entityType, null);
+        throw new AssertionError();
+    }
+
     @Shadow
     protected abstract ItemStack getDefaultPickupItem();
 
     @WrapOperation(method = "doPostHurtEffects", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/alchemy/Potion;getEffects()Ljava/util/List;"))
     private List<MobEffectInstance> getEffects(Potion instance, Operation<List<MobEffectInstance>> original, @Local PotionContents potionContents, @Share("isCustomPotion") LocalBooleanRef isCustomPotion) {
-        PotionLike p = PotionLike.fromItemStack(getDefaultPickupItem());
+        PotionLike p = PotionLike.fromItemStack(getPickupItem());
         if (p == null || p == PotionLike.EMPTY || p instanceof Potion)
             return original.call(instance);
         isCustomPotion.set(true);
