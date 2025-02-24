@@ -22,12 +22,6 @@
 		],
 		"client": [
 			"xyz.ashyboxy.mc.custompotions.CustomPotionsClient"
-		],
-		"emi": [
-			"xyz.ashyboxy.mc.custompotions.emi.Plugin"
-		],
-		"rei_client": [
-			"xyz.ashyboxy.mc.custompotions.rei.ClientPlugin"
 		]
 	},
 	"mixins": [
