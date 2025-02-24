@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.8-SNAPSHOT'
+    id 'fabric-loom' version '1.10-SNAPSHOT'
     id 'maven-publish'
 }
 
@@ -35,18 +35,16 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings loom.layered() {
         officialMojangMappings()
-        parchment("org.parchmentmc.data:parchment-1.21:2024.07.28@zip")
+        parchment("org.parchmentmc.data:parchment-1.21.1:2024.11.17@zip")
     }
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // i am so sad. i almost didn't need it. but i used it in the resource loaders.
-    // Fabric API. This is technically optional, but you probably want it anyway.
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 
     modCompileOnly "dev.architectury:architectury-fabric:13.0.6"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-api-fabric:${rei_version}"
     modCompileOnly "me.shedaniel:RoughlyEnoughItems-default-plugin-fabric:${rei_version}"
-    modRuntimeOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
+    modCompileOnly "me.shedaniel:RoughlyEnoughItems-fabric:${rei_version}"
 
     modCompileOnly "dev.emi:emi-fabric:${emi_version}:api"
     modCompileOnly "dev.emi:emi-fabric:${emi_version}"
