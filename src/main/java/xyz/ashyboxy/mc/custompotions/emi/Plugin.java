@@ -14,18 +14,17 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
-import xyz.ashyboxy.mc.custompotions.CustomPotionClientData;
-import xyz.ashyboxy.mc.custompotions.CustomPotionsMod;
-import xyz.ashyboxy.mc.custompotions.PotionLike;
-import xyz.ashyboxy.mc.custompotions.PotionRecipe;
+import xyz.ashyboxy.mc.custompotions.*;
 
 import java.util.List;
 
 public class Plugin implements EmiPlugin {
     @Override
     public void register(EmiRegistry registry) {
+        if (!Config.emiReiEnabled) return;
+
         // i am so sorry
-        if(CustomPotionClientData.emiReloading) {
+        if (CustomPotionClientData.emiReloading) {
             while (!CustomPotionClientData.recipesReady) continue;
             CustomPotionClientData.recipesReady = false;
         }

@@ -15,7 +15,9 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeHolder;
-import xyz.ashyboxy.mc.custompotions.*;
+import xyz.ashyboxy.mc.custompotions.Config;
+import xyz.ashyboxy.mc.custompotions.PotionLike;
+import xyz.ashyboxy.mc.custompotions.PotionRecipe;
 
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class REIHelper {
     private static int entryCounter = 0;
 
     public static void registerDisplays(DisplayRegistry registry) {
+        if (!Config.emiReiEnabled) return;
+
 //        if (CustomPotionClientData.reiReloading) {
 //            displayCounter++;
 //            if (displayCounter < 2) return;
@@ -81,6 +85,8 @@ public class REIHelper {
     }
 
     public static void registerEntries(EntryRegistry registry) {
+        if (!Config.emiReiEnabled) return;
+
 //        if (CustomPotionClientData.reiReloading) {
 //            entryCounter++;
 //            if (entryCounter < 2) return;

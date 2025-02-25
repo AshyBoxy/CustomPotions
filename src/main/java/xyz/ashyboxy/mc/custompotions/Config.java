@@ -15,6 +15,7 @@ public class Config {
     private static final Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     public static boolean debug = FabricLoader.getInstance().isDevelopmentEnvironment();
+    public static boolean emiReiEnabled = true;
 
     public static void load() {
         if (!Files.isRegularFile(configPath)) {
@@ -32,12 +33,15 @@ public class Config {
         JsonObject config = j.getAsJsonObject();
 
         debug = GsonHelper.getAsBoolean(config, "debug", debug);
+        emiReiEnabled = GsonHelper.getAsBoolean(config, "emiReiEnabled", emiReiEnabled);
+        save();
     }
 
     public static void save() {
         JsonObject j = new JsonObject();
 
         j.addProperty("debug", debug);
+        j.addProperty("emiReiEnabled", emiReiEnabled);
 
         try {
             Files.writeString(configPath, gson.toJson(j));
